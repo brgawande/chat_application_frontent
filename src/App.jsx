@@ -6,18 +6,24 @@ import {
   Routes,
   Route,
   useLocation,
+  Navigate,
 } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import PrivateRoute from "./components/privateRoute/PrivateRoute";
 
 function App() {
   const location = useLocation();
+  const token = localStorage.getItem("token");
   return (
     <>
       {location.pathname !== "/login" && <Header />}
 
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/login"
+          element={token ? <Navigate to="/" /> : <Login />}
+        />
+        <Route path="/" element={<PrivateRoute element={<Home />} />} />
       </Routes>
       <Toaster />
     </>

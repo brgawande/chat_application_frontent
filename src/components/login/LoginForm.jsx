@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 
 const LoginForm = ({ setUserLogin, userLogin }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -42,6 +43,7 @@ const LoginForm = ({ setUserLogin, userLogin }) => {
         password: "",
       });
       toast.success(response?.data?.message);
+      navigate("/");
     } catch (error) {
       console.log("login Error", error);
       dispatch(loginFaliure(error?.response?.data?.message || "Login Failed"));
