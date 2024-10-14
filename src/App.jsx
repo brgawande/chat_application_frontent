@@ -15,10 +15,12 @@ import MyProfile from "./components/profile/MyProfile";
 function App() {
   const location = useLocation();
   const token = localStorage.getItem("token");
+  const hideHeaderPaths = ["/login"];
   return (
     <>
-      {location.pathname !== "/login" && <Header />}
+      {/* {location.pathname !== "/login" && <Header />} */}
 
+      {!hideHeaderPaths.includes(location.pathname) && <Header />}
       <Routes>
         <Route
           path="/login"
