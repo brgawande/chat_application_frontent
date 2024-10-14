@@ -23,41 +23,18 @@ const Home = () => {
   };
 
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+    <Box sx={{ width: 350 }} role="presentation" onClick={toggleDrawer(false)}>
+      <OnlineUser />
       <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
     </Box>
   );
 
   return (
     <div className="h-[91vh] homebg flex">
-      <div className="w-[40%] hidden md:block bg-[red] ">
+      <div className="w-[40%] hidden md:block bg-[white] ">
         <OnlineUser />
       </div>
-      <div className="w-[100%] bg-[green] relative">
+      <div className="w-[100%]  relative">
         <Button
           style={{ position: "absolute", color: "white" }}
           onClick={toggleDrawer(true)}

@@ -7,6 +7,18 @@
   font-family: "Poppins", sans-serif;
 }
 
+@layer components {
+  .dflex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bb {
+    border: 2px solid black;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 5px; /* Width of the scrollbar */
 }
@@ -16,7 +28,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0066ff; /* Color of the scrollbar */
+  background: #00158e; /* Color of the scrollbar */
   border-radius: 10px; /* Round edges */
 }
 
@@ -24,7 +36,37 @@
   background: #555; /* Color of the scrollbar on hover */
 }
 
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: lightblue; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Round the corners of the scrollbar thumb */
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background-color: rgb(255, 255, 255); /* Color of the scrollbar thumb */
+}
+.scrollbar-thinn::-webkit-scrollbar-thumb {
+  display: none;
+}
+.scrollbar-thinn::-webkit-scrollbar-track {
+  display: none;
+}
+
+.messageboxradius {
+  border-radius: 0px 7px 7px 7px;
+}
+.messageboxsenderradius {
+  border-radius: 7px 0px 7px 7px;
+  background: linear-gradient(to right, #1e3a8a, #60a5fa);
+  color: white;
+}
+
 .homebg {
+  background-image: url("../src/assets/gradient.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.headercss {
   background-image: url("../src/assets/gradient.jpg");
   background-repeat: no-repeat;
   background-size: cover;
