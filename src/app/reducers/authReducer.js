@@ -5,6 +5,7 @@ const initialState = {
   user: null,
   loading: false,
   error: null,
+  token: localStorage.getItem("token") || null,
 };
 
 const authSlice = createSlice({
@@ -20,6 +21,8 @@ const authSlice = createSlice({
       state.loading = false;
       state.isLoggedIn = true;
       state.user = action.payload;
+      state.token = action.payload.token;
+      localStorage.setItem("token", action.payload.token);
     },
     loginFaliure: (state, action) => {
       state.loading = false;
@@ -33,7 +36,7 @@ const authSlice = createSlice({
     },
     registerSuccess: (state, action) => {
       state.loading = false;
-      state.isLoggedIn = true;
+
       state.user = action.payload;
     },
     registerFaliure: (state, action) => {

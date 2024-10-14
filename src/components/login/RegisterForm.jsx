@@ -9,6 +9,7 @@ import {
   registerSuccess,
 } from "../../app/reducers/authReducer";
 import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 const RegisterForm = ({ setUserLogin, userLogin }) => {
   const dispatch = useDispatch();
@@ -31,15 +32,23 @@ const RegisterForm = ({ setUserLogin, userLogin }) => {
     e.preventDefault();
     dispatch(registerStart());
     try {
-      console.log("formdata", formData);
+      // console.log("formdata", formData);
       const response = await axios.post(
         "http://localhost:5000/api/user/register",
         formData
       );
-      console.log("response", response);
+      // console.log("response", response);
       dispatch(registerSuccess(response.data.data));
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        phone: "",
+      });
+      setUserLogin(!userLogin);
+      toast.success(response?.data?.message);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       dispatch(
         registerFaliure(error.response?.data?.message || "Registration Failed")
       );

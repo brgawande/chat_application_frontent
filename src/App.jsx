@@ -7,6 +7,7 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 function App() {
   const location = useLocation();
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
       </Routes>
+      <Toaster />
     </>
   );
 }
