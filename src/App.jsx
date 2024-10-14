@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
+import MyProfile from "./components/profile/MyProfile";
 
 function App() {
   const location = useLocation();
@@ -23,7 +24,11 @@ function App() {
           path="/login"
           element={token ? <Navigate to="/" /> : <Login />}
         />
-        <Route path="/" element={<PrivateRoute element={<Home />} />} />
+        <Route path="/" element={<PrivateRoute component={Home} />} />
+        <Route
+          path="/myprofile"
+          element={<PrivateRoute component={MyProfile} />}
+        />
       </Routes>
       <Toaster />
     </>

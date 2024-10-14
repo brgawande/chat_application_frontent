@@ -37,6 +37,8 @@ const LoginForm = ({ setUserLogin, userLogin }) => {
       dispatch(
         loginSuccess({ user: response?.data?.user, token: response.data.token })
       );
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+
       console.log(response);
       setFormData({
         email: "",

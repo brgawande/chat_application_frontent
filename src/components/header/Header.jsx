@@ -9,6 +9,11 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../../assets/mango.png";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { logoutFaliure, logoutSuccess } from "../../app/reducers/authReducer";
+import toast from "react-hot-toast";
 
 const navigation = [
   { name: "Dashboard", href: "#", current: true },
@@ -22,6 +27,25 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const logoutHandler = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/user/logout"
+      );
+      await dispatch(logoutSuccess());
+      localStorage.removeItem("token");
+      navigate("/login");
+      toast.success(response?.data?.message);
+    } catch (error) {
+      console.log("logout Error", error);
+      dispatch(
+        logoutFaliure(error?.response?.data?.message || "Logout Failed Failed")
+      );
+    }
+  };
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -93,28 +117,21 @@ export default function Header() {
                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
               >
                 <MenuItem>
-                  <a
-                    href="#"
+                  <Link
+                    to={"/myprofile"}
                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
                   >
                     Your Profile
-                  </a>
+                  </Link>
                 </MenuItem>
+
                 <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
-                  >
-                    Settings
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
+                  <p
+                    onClick={logoutHandler}
+                    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 cursor-pointer"
                   >
                     Sign out
-                  </a>
+                  </p>
                 </MenuItem>
               </MenuItems>
             </Menu>
