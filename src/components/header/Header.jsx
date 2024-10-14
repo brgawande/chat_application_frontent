@@ -27,7 +27,7 @@ export default function Header() {
   const logoutHandler = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/user/logout"
+        "https://chatapplication-1-mxxb.onrender.com/api/user/logout"
       );
       await dispatch(logoutSuccess());
       localStorage.removeItem("token");

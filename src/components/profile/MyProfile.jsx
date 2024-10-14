@@ -30,7 +30,7 @@ export default function MyProfile() {
       };
 
       const response = await axios.get(
-        `http://localhost:5000/api/user/getuser/${user?.id}`,
+        `https://chatapplication-1-mxxb.onrender.com/api/user/getuser/${user?.id}`,
         config
       );
       //   console.log(response?.data?.user);

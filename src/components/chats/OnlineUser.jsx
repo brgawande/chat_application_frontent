@@ -16,7 +16,7 @@ const OnlineUser = () => {
     dispatch(getUsersStart());
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/admin/getallusers"
+        "https://chatapplication-1-mxxb.onrender.com/api/admin/getallusers"
       );
 
       const users = response?.data?.allUser;
@@ -32,7 +32,7 @@ const OnlineUser = () => {
     fetchAllUsers();
   }, []);
 
-  console.log(allusers);
+  //   console.log(allusers);
 
   return (
     <div className=" h-full">
@@ -50,7 +50,7 @@ const OnlineUser = () => {
         <div className="pt-3 h-[60vh] overflow-hidden overflow-y-scroll scrollbar-thin">
           {allusers.length > 0 ? (
             allusers.map((user) => (
-              <div className="flex my-4 pb-2 gap-4">
+              <div key={user?._id} className="flex my-4 pb-2 gap-4">
                 <div className="imagecard h-[50px] w-[50px] rounded-full overflow-hidden border-2 border-[#8b8b8b]">
                   <img
                     className="h-[100%] w-[100%] object-cover"

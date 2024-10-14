@@ -34,7 +34,7 @@ const RegisterForm = ({ setUserLogin, userLogin }) => {
     try {
       // console.log("formdata", formData);
       const response = await axios.post(
-        "http://localhost:5000/api/user/register",
+        "https://chatapplication-1-mxxb.onrender.com/api/user/register",
         formData
       );
       // console.log("response", response);
